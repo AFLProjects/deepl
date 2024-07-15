@@ -30,7 +30,7 @@ def exponential_learning_rate(initial, epoch, decay_rate):
 # -- Tests --
 
 structure = (2, 2, 2)
-nn = core.ANN(structure, [core.relu, core.fixed_point])
+nn = core.Dense_ANN(structure, [core.relu, core.fixed_point])
 weights_tensor = core.uniform_init(structure, 0, 1)
 
 alpha_initial = 0.01
