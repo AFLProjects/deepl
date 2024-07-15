@@ -62,6 +62,9 @@ def mse_loss(weights_tensor, nn, input, expected_output):
     return np.mean(diff ** 2)
 
 
+# -- Gradient --
+
+
 grad_loss = grad(mse_loss)
 
 
