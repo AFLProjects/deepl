@@ -128,7 +128,9 @@ for i in range(iterations):
 print(f'mse : {mse}')
 print(f'w : {weights_tensor}')
 
+
 # -- Plotting --
+
 
 plt.figure(figsize=(10, 6))
 plt.scatter(range(iterations), loss_values, label='MSE', s=iterations*[0.1])
