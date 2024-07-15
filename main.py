@@ -30,20 +30,6 @@ grad_loss = grad(mse_loss)
 
 
 
-# -- Weight initialization --
-
-
-# Random weight initialization
-weights_tensor = np.random.rand(2, 2, 2)
-
-# Zero weight initialization
-# weights_tensor = np.zeros((2, 2, 2))
-
-# Xavier weight initialization
-n_in, n_hidden, n_out = 2, 2, 2
-# limit = np.sqrt(6 / (n_in + n_out))
-# weights_tensor = np.random.uniform(-limit, limit,
-#                                    size=(n_in, n_hidden, n_out))
 
 
 # -- Learning rate --
@@ -60,6 +46,8 @@ def exponential_learning_rate(initial, epoch, decay_rate):
 
 structure = (2, 2, 2)
 nn = core.ANN(structure, [core.relu, core.fixed_point])
+weights_tensor = core.uniform_init(structure, 0, 1)
+
 
 
 alpha_initial = 0.01
