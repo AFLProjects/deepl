@@ -1,6 +1,6 @@
 # deepl/core/__init__.py
 
-from .nn import Dense_Node, Dense_Layer, ANN
+from .dense_nn import Dense_Node, Dense_Layer, ANN
 from .activations import *
 from .initializations import *
 

@@ -30,4 +30,4 @@ def setup(file_path):
 setup("requirements.txt")
 setup("requirements-dev.txt")
 
-print("setup finished")
+print("Setup finished.")
