@@ -1,4 +1,5 @@
 import autograd.numpy as np
+from utils import time_perf
 
 # Represents a single node in a dense (fully connected) layer.
 class Dense_Node:
@@ -28,6 +29,7 @@ class Dense_Layer:
 # Represents an artificial neural network composed of dense layers.
 class ANN:
 
+    @time_perf
     def __init__(self, sizes, activation_list):
         # Initialize the ANN with layer sizes and activation functions.
         self.layers = [Dense_Layer(activation_list[i-1], sizes[i], sizes[i-1]) for i in range(1, len(sizes))]

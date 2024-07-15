@@ -1,5 +1,8 @@
 from deepl import core
 
+
+import time
+
 import autograd.numpy as np
 from autograd import grad
 
@@ -7,29 +10,13 @@ import matplotlib.pyplot as plt
 
 import math
 
-
-# -- ANN Structure --
-
-
-# -- Loss functions --
-
-
 # ANN Loss
 def mse_loss(weights_tensor, nn, input, expected_output):
     output = nn.output(input, weights_tensor)
     diff = output - expected_output
     return np.mean(diff ** 2)
 
-
-# -- Gradient --
-
-
 grad_loss = grad(mse_loss)
-
-
-
-
-
 
 
 # -- Learning rate --
@@ -42,13 +29,9 @@ def exponential_learning_rate(initial, epoch, decay_rate):
 
 # -- Tests --
 
-
-
 structure = (2, 2, 2)
 nn = core.ANN(structure, [core.relu, core.fixed_point])
 weights_tensor = core.uniform_init(structure, 0, 1)
-
-
 
 alpha_initial = 0.01
 alpha = alpha_initial
