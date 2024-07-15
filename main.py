@@ -7,49 +7,8 @@ import matplotlib.pyplot as plt
 
 import math
 
-core.test_function()
 
 # -- ANN Structure --
-
-
-class Dense_Node:
-
-    def __init__(self, activation, input_size):
-        self.activation = activation
-        self.input_size = input_size
-
-    def output(self, input, weights):
-        return self.activation(np.dot(input, weights))
-
-
-class Dense_Layer:
-
-    def __init__(self, activation_function, layer_size, input_size):
-        self.layer_size = layer_size
-        self.input_size = input_size
-        self.nodes = [Dense_Node(activation_function, input_size)
-                      for i in range(layer_size)]
-
-    def output(self, input, weights_matrix):
-        return np.array([self.nodes[i].output(input, weights_matrix[i])
-                         for i in range(len(self.nodes))])
-
-
-class ANN:
-
-    def __init__(self, structure, activation_list):  # structure="3:2:1"
-        strs = structure.split(':')
-        sizes = [int(strs[i]) for i in range(len(strs))]
-        self.layers = []
-        for i in range(1, len(sizes)):
-            layer = Dense_Layer(activation_list[i-1], sizes[i], sizes[i-1])
-            self.layers.append(layer)
-
-    def output(self, input, weights_tensor):
-        current = input
-        for i in range(len(self.layers)):
-            current = self.layers[i].output(current, weights_tensor[i])
-        return current
 
 
 # -- Loss functions --
@@ -68,17 +27,7 @@ def mse_loss(weights_tensor, nn, input, expected_output):
 grad_loss = grad(mse_loss)
 
 
-# -- Activation funtions --
 
-
-# Relu activation
-def relu(x):
-    return np.maximum(0, x)
-
-
-# Identity activation function
-def iden(x):
-    return x
 
 
 # -- Weight initialization --
@@ -108,7 +57,9 @@ def exponential_learning_rate(initial, epoch, decay_rate):
 # -- Tests --
 
 
-nn = ANN("2:2:2", [relu, iden])
+
+structure = (2, 2, 2)
+nn = core.ANN(structure, [core.relu, core.fixed_point])
 
 
 alpha_initial = 0.01

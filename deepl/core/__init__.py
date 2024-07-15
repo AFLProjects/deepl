@@ -1,5 +1,8 @@
 # deepl/core/__init__.py
 
-from .test import test_function
+from .nn import Dense_Node, Dense_Layer, ANN
+from .activations import sigmoid, tanh, relu, leaky_relu, elu, swish, fixed_point
 
-__all__ = ['test_function']
+__all__ = ['Dense_Node', 'Dense_Layer', 'ANN',
+           'sigmoid', 'tanh', 'relu', 'leaky_relu',
+           'elu', 'swish', 'fixed_point']
