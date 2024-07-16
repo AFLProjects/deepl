@@ -1,18 +1,18 @@
 from deepl import core
 from deepl import training
-import matplotlib.pyplot as plt
+from deepl import visualization
 import autograd.numpy as np
 
 # Example
-structure = (3, 3, 3)
+structure = (2, 2, 2)
 nn = core.Dense_ANN(structure, [core.relu, core.fixed_point])
 
 data_size = 16000
-train_x = [np.random.rand(3) for _ in range(data_size)]
+train_x = [np.random.rand(2) for _ in range(data_size)]
 train_y = 2 * train_x
 
 validate_size = 64
-validate_x = [np.random.rand(3) for _ in range(validate_size)]
+validate_x = [np.random.rand(2) for _ in range(validate_size)]
 validate_y = 2 * validate_x
 
 """
@@ -38,15 +38,4 @@ trainer = training.SGD_Optimizer(nn,
 
 weights_tensor, loss_values = trainer.train(train_x, train_y, data_size)
 
-print(len(trainer.checkpoints_tracking))
-
-# -- Plotting --
-plt.figure(figsize=(10, 6))
-plt.scatter(range(len(loss_values)), loss_values, label='MSE', s=len(loss_values)*[0.1])
-plt.xlabel('Iterations')
-plt.ylabel('Loss')
-plt.title('Loss vs Iteration')
-plt.legend()
-plt.grid(True)
-plt.show()
-
+visualization.loss_plot(trainer, 0.1, 'MSE')
