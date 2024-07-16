@@ -7,19 +7,18 @@ import autograd.numpy as np
 structure = (2, 2, 2)
 nn = core.Dense_ANN(structure, [core.relu, core.fixed_point])
 
-N = 5000
-data_inputs = [np.random.rand(2) for _ in range(N)]
-data_outputs = 2 * data_inputs
-dataset = [data_inputs, data_outputs]
+data_size = 1000
+data_x = [np.random.rand(2) for _ in range(data_size)]
+data_y = 2 * data_x
 
 trainer = training.SGD_Optimizer(nn,
                                 loss=training.mse,
                                 initialization=core.uniform_init,
                                 initialization_args=(0,1), 
-                                start_learning_rate=0.01,
+                                start_learning_rate=0.1,
                                 callbacks=[])
 
-weights_tensor, loss_values = trainer.train(dataset, N, batch_size=1)
+weights_tensor, loss_values = trainer.train(data_x, data_y, data_size)
 
 
 # -- Plotting --
