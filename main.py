@@ -1,6 +1,7 @@
 from deepl import core
 from deepl import training
 import matplotlib.pyplot as plt
+import autograd.numpy as np
 
 # Example
 structure = (2, 2, 2)
@@ -18,12 +19,12 @@ trainer = training.SGD_Optimizer(nn,
                                 start_learning_rate=0.01,
                                 callbacks=[])
 
-weights_tensor, loss_values = trainer.train(dataset, N)
+weights_tensor, loss_values = trainer.train(dataset, N, batch_size=1)
 
 
 # -- Plotting --
 plt.figure(figsize=(10, 6))
-plt.scatter(range(N), loss_values, label='MAE', s=N*[0.1])
+plt.scatter(range(len(loss_values)), loss_values, label='MSE', s=len(loss_values)*[0.1])
 plt.xlabel('Iterations')
 plt.ylabel('Loss')
 plt.title('Loss vs Iteration')
