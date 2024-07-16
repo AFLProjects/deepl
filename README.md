@@ -33,10 +33,10 @@ A small deep learning library for training end-to-end Artificial Neural Networks
 - Only implements end-to-end training, not model-based deep learning.
 
 ## How to use
-`git clone https://github.com/AFLProjects/deepl.git`
-`cd deepl`
-`python3 setup.py`
-`python3 example.py`
+- `git clone https://github.com/AFLProjects/deepl.git`
+- `cd deepl`
+- `python3 setup.py`
+- `python3 example.py`
 
 ## Example
 
