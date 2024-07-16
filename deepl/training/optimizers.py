@@ -1,40 +1,32 @@
 from ..core.initializations import *
 from .losses import *
 from autograd import grad
-                                                  
 
 class SGD_Optimizer:
     def __init__(self, nn, loss=mse,
                 initialization=uniform_init, initialization_args=(0,1), 
                 start_learning_rate=0.01, callbacks=[]):
-        # set neural netowkr
-        self.nn = nn
-        
-        # loss params
-        self.loss = loss 
-        self.grad_loss = grad(loss)
-        self.loss_values = []
-        
-        # set initialization params and initialize tensor
-        self.initialization = initialization
-        self.initialization_args = initialization_args
-        self.start_w_tensor = initialization(nn.structure, *initialization_args)
-        self.current_w_tensor = self.start_w_tensor
-        
-        # set learning rate
-        self.start_learning_rate = start_learning_rate
-        self.learning_rate = self.start_learning_rate
-        
-        # set callbacks
-        self.callbacks = callbacks
+        self.nn = nn  # Neural network to optimize
+        self.loss = loss  # Loss function
+        self.grad_loss = grad(loss)  # Gradient of the loss function
+        self.loss_values = []  # Store loss values for each iteration
+        self.initialization = initialization  # Method to initialize weights
+        self.initialization_args = initialization_args  # Arguments for initialization
+        self.current_w_tensor = initialization(nn.structure,
+                                                  *initialization_args)  # Initialize weights
+        self.start_learning_rate = start_learning_rate  # Initial learning rate
+        self.learning_rate = self.start_learning_rate  # Current learning rate
+        self.callbacks = callbacks  # List of callback functions
 
     def reset(self):
-        self.start_w_tensor = self.initialization(self.nn.structure,
+        # Reset weights, loss values, and learning rate
+        self.loss_values = []
+        self.current_w_tensor = self.initialization(self.nn.structure,
                                                   *self.initialization_args)
-        self.current_w_tensor = self.start_w_tensor
         self.learning_rate = self.start_learning_rate
 
     def train(self, dataset, data_size):
+        # Train the neural network using SGD for a specified number of iterations
         for i in range(data_size):
             gradient = self.grad_loss(self.current_w_tensor, self.nn,
                                      dataset[0][i], dataset[1][i])
