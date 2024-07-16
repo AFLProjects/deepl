@@ -31,10 +31,12 @@ trainer = training.SGD_Optimizer(nn,
                                  start_lr=0.1,
                                  callbacks=[training.stop_loss_min,
                                             training.checkpoints],
-                                 callback_args=[(10e-4,),
+                                 callback_args=[(10e-3,),
                                                 (250,)],
                                  validate_x=validate_x,
-                                 validate_y=validate_y)
+                                 validate_y=validate_y,
+                                 reg=training.lasso,
+                                 reg_params=(0.001,))
 
 weights_tensor, loss_values = trainer.train(train_x, train_y, data_size)
 
