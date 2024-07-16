@@ -29,6 +29,7 @@ class SGD_Optimizer:
         self.validate_x = validate_x # Set of inputs to validate
         self.validate_y = validate_y # Set of outputs to validate
         self.checkpoints_tracking = [] # List for tracking weights tensor at regular intervals
+        self.mean_validation_loss = []
         
     # Reset weights, loss values, and learning rate
     def reset(self):

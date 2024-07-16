@@ -39,3 +39,4 @@ trainer = training.SGD_Optimizer(nn,
 weights_tensor, loss_values = trainer.train(train_x, train_y, data_size)
 
 visualization.loss_plot(trainer, 0.1, 'MSE')
+visualization.mean_validation_plot(trainer, 0.1, 'MSE')
