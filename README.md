@@ -1,6 +1,6 @@
 # deepl
 
-A small deep learning library for training end-to-end Artificial Neural Networks (ANNs), primarily based on `numpy` and `autograd`. (This is a very small 2-day project for learning purposes.)
+A deep learning library for training end-to-end Artificial Neural Networks (ANNs), primarily based on `numpy` and `autograd`. (This is a very small 2-day project for learning purposes.)
 
 ## Features
 
