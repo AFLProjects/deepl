@@ -43,6 +43,30 @@ A small deep learning library for training end-to-end Artificial Neural Networks
 - `loss_plot`
 - `mean_validation_plot`
 
+## General structure
+
+deepl/
+│
+├── core/
+│   ├── __init__.py
+│   ├── activations.py
+│   ├── initializations.py
+│   └── layers.py
+│
+├── training/
+│   ├── __init__.py
+│   ├── losses.py
+│   ├── optimizers.py
+│   └── callbacks.py
+│
+├── utils/
+│   ├── __init__.py
+│   └── utils.py
+│
+└── visualization/
+    ├── __init__.py
+    └── plots.py
+
 ## Limitations
 - Only supports networks of the form `(N, N, N, N, ...)`.
 - Biases and regularizers are not implemented.
@@ -102,6 +126,16 @@ visualization.mean_validation_plot(trainer, 0.5, 'MSE')
     <img src="images/img1.png" alt="Image 1" style="width: 48%;">
     <img src="images/img2.png" alt="Image 2" style="width: 48%;">
 </div>
+
+Performance for this specific case( (2,2,2) ) : 
+__init__ took 7.958e-06 seconds
+uniform_init took 2.271e-05 seconds
+__init__ took 5.629e-05 seconds
+train took 1.820e-01 seconds
+
+
+
+
 
 
 
