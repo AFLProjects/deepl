@@ -3,7 +3,6 @@ from ..utils import time_perf
 from .losses import mse
 from .regulizers import empty_regulizer
 from autograd import grad
-import autograd.numpy as np
 
 
 class SGD_Optimizer:
@@ -38,7 +37,8 @@ class SGD_Optimizer:
         self.checkpoints_tracking = []  # Array for checkpoint callback
         self.mean_validation_loss = []  # Array for min loss callback
         self.reg = reg  # Regulizer function for training
-        self.reg_params = reg_params  # Addtional arguments for the regulizer function
+        # Addtional arguments for the regulizer function
+        self.reg_params = reg_params
 
     # Train the neural network using SGD for a specified number of iterations
     @time_perf
@@ -61,8 +61,9 @@ class SGD_Optimizer:
             loss_value = self.loss(self.current_w_tensor,
                                    self.nn, x[i], y[i],
                                    self.reg, self.reg_params)
-            
-            new_tensor = [w - self.lr * g for w,g in zip(self.current_w_tensor, gradient)]
+
+            new_tensor = [w - self.lr * g
+                          for w, g in zip(self.current_w_tensor, gradient)]
             self.current_w_tensor = new_tensor
             self.loss_values.append(loss_value)
 

@@ -4,7 +4,7 @@ from deepl import visualization
 import autograd.numpy as np
 
 # Example
-structure = (3,3,3)
+structure = (3, 3, 3)
 nn = core.Dense_ANN(structure, [core.relu, core.fixed_point])
 
 data_size = 16000
@@ -42,4 +42,3 @@ weights_tensor, loss_values = trainer.train(train_x, train_y, data_size)
 
 visualization.loss_plot(trainer, 0.5, 'MSE')
 visualization.mean_validation_plot(trainer, 0.5, 'MSE')
-
