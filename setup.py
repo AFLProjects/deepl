@@ -27,7 +27,7 @@ def setup(file_path):
                 install_package(package_name)
 
 
-setup("requirements.txt")
-setup("requirements-dev.txt")
+setup("./requirements/requirements.txt")
+setup("./requirements/requirements-dev.txt")
 
 print("Setup finished.")

@@ -15,7 +15,7 @@ def loss_plot(trainer, point_size, loss_str):
     plt.show()
 
 def mean_validation_plot(trainer, point_size, loss_str):
-    # Plot the loss values over iterations
+    # Plot the mean loss validation values over iterations
     plt.figure(figsize=(10, 6))
     plt.scatter(range(len(trainer.mean_validation_loss)),
                 trainer.mean_validation_loss,
