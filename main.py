@@ -4,15 +4,15 @@ import matplotlib.pyplot as plt
 import autograd.numpy as np
 
 # Example
-structure = (2, 2, 2)
+structure = (3, 3, 3)
 nn = core.Dense_ANN(structure, [core.relu, core.fixed_point])
 
-data_size = 16000
-train_x = [np.random.rand(2) for _ in range(data_size)]
+data_size = 10000
+train_x = [np.random.rand(3) for _ in range(data_size)]
 train_y = 2 * train_x
 
-validate_size = 128
-validate_x = [np.random.rand(2) for _ in range(validate_size)]
+validate_size = 32
+validate_x = [np.random.rand(3) for _ in range(validate_size)]
 validate_y = 2 * validate_x
 
 trainer = training.SGD_Optimizer(nn,
