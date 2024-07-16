@@ -96,5 +96,13 @@ weights_tensor, loss_values = trainer.train(train_x, train_y, data_size)
 # Plot
 visualization.loss_plot(trainer, 0.5, 'MSE')
 visualization.mean_validation_plot(trainer, 0.5, 'MSE')
+```
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="image/img1.png" alt="Image 1" style="width: 48%;">
+    <img src="image/img2.png" alt="Image 2" style="width: 48%;">
+</div>
+
+
 
 
