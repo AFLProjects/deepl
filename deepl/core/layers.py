@@ -22,6 +22,8 @@ class Dense_ANN:
         # Initialize the ANN with layer sizes and activation functions.
         self.layers = [Dense_Layer(activation_list[i-1], sizes[i], sizes[i-1])
                        for i in range(1, len(sizes))]
+        self.structure = sizes
+        self.activation_list = activation_list
 
     def output(self, input, weights_tensor):
         # Compute the ANN's output.s
