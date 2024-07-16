@@ -28,6 +28,6 @@ def setup(file_path):
 
 
 setup("./requirements/requirements.txt")
-#setup("./requirements/requirements-dev.txt")
+# setup("./requirements/requirements-dev.txt")
 
 print("Setup finished.")

@@ -1,7 +1,6 @@
 from deepl import core
 from deepl import training
 from deepl import visualization
-from utils import *
 import autograd.numpy as np
 
 # Example
@@ -26,16 +25,16 @@ def lr_schedule(epoch):
 """
 
 trainer = training.SGD_Optimizer(nn,
-                                loss=training.mse,
-                                init=core.uniform_init,
-                                init_args=(0,1), 
-                                start_lr=0.1,
-                                callbacks=[training.stop_loss_min,
-                                           training.checkpoints],
-                                callback_args=[(10e-4,),
-                                               (250,)],
-                                validate_x=validate_x,
-                                validate_y=validate_y)
+                                 loss=training.mse,
+                                 init=core.uniform_init,
+                                 init_args=(0, 1),
+                                 start_lr=0.1,
+                                 callbacks=[training.stop_loss_min,
+                                            training.checkpoints],
+                                 callback_args=[(10e-4,),
+                                                (250,)],
+                                 validate_x=validate_x,
+                                 validate_y=validate_y)
 
 weights_tensor, loss_values = trainer.train(train_x, train_y, data_size)
 
