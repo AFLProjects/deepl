@@ -44,12 +44,12 @@ A small deep learning library for training end-to-end Artificial Neural Networks
 - `mean_validation_plot`
 
 ## Limitations
-- Biases and regularizers are not implemented.
+- Regularizers are not implemented.
 - Uses mostly `numpy` with `autograd`, which does not take advantage of GPU and parallelism as modern libraries would.
 - Only implements end-to-end training, not model-based deep learning.
 
 ## Future Improvements
-- Implementation of biases and regularizers.
+- Implementation of regularizers.
 
 ## Example
 

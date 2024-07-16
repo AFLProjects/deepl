@@ -13,7 +13,7 @@ class Dense_Layer:
 
     # Compute the layer's output.
     def output(self, input, weights_matrix):
-        return self.activation(np.dot(weights_matrix, input))
+        return self.activation(np.dot(weights_matrix, np.append(input, 1)))
 
 
 # Represents an artificial neural network composed of dense layers.
