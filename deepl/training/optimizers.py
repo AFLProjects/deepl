@@ -2,6 +2,7 @@ from ..core.initializations import uniform_init
 from ..utils import time_perf
 from .losses import mse
 from autograd import grad
+import autograd.numpy as np
 
 
 class SGD_Optimizer:
@@ -34,12 +35,6 @@ class SGD_Optimizer:
         self.checkpoints_tracking = []  # Array for checkpoint callback
         self.mean_validation_loss = []  # Array for min loss callback
 
-    # Reset weights, loss values, and learning rate
-    def reset(self):
-        self.loss_values = []
-        self.current_w_tensor = self.init(self.nn.structure, *self.init_args)
-        self.lr = self.start_lr
-
     # Train the neural network using SGD for a specified number of iterations
     @time_perf
     def train(self, x, y, data_size):
@@ -59,7 +54,9 @@ class SGD_Optimizer:
                                       self.nn, x[i], y[i])
             loss_value = self.loss(self.current_w_tensor,
                                    self.nn, x[i], y[i])
-            self.current_w_tensor = self.current_w_tensor - self.lr * gradient
+            
+            new_tensor = [w - self.lr * g for w,g in zip(self.current_w_tensor, gradient)]
+            self.current_w_tensor = new_tensor
             self.loss_values.append(loss_value)
 
             for callback, callback_arg in zip(self.callbacks,
