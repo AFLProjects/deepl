@@ -13,7 +13,6 @@ def mae(weights_tensor, nn, input, correct_output):
     return np.mean(np.abs(output - correct_output))
 
 
-# TO BE TESTED
 # Calculates the binary cross-entropy loss between the network output and correct output
 # Added clipping for numerical stability
 def binary_cross_entropy(weights_tensor, nn, input, correct_output):
@@ -24,7 +23,6 @@ def binary_cross_entropy(weights_tensor, nn, input, correct_output):
                     (1 - correct_output) * np.log(1 - output))
 
 
-# TO BE TESTED
 # Calculates the hinge loss between the network output and correct output
 def hinge_loss(weights_tensor, nn, input, correct_output):
     output = nn.output(input, weights_tensor)
