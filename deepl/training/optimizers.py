@@ -8,9 +8,13 @@ class SGD_Optimizer:
 
     @time_perf
     def __init__(self, nn, loss=mse,
-                initialization=uniform_init, initialization_args=(0,1), 
-                start_learning_rate=0.01, callbacks=[], callback_args=[],
-                validate_x=[], validate_y=[]):
+                initialization=uniform_init,
+                initialization_args=(0,1), 
+                start_learning_rate=0.01, 
+                callbacks=[],
+                callback_args=[],
+                validate_x=[], 
+                validate_y=[]):
         self.nn = nn  # Neural network to optimize
         self.loss = loss  # Loss function
         self.grad_loss = grad(loss)  # Gradient of the loss function
