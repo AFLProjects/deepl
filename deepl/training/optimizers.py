@@ -7,19 +7,20 @@ class SGD_Optimizer:
     def __init__(self, nn, loss=mse,
                 initialization=uniform_init, initialization_args=(0,1), 
                 start_learning_rate=0.01, callbacks=[]):
-        self.nn = nn
-        self.loss = loss 
-        self.grad_loss = grad(loss)
-        self.loss_values = []
-        self.initialization = initialization
-        self.initialization_args = initialization_args
+        self.nn = nn  # Neural network to optimize
+        self.loss = loss  # Loss function
+        self.grad_loss = grad(loss)  # Gradient of the loss function
+        self.loss_values = []  # Store loss values for each iteration
+        self.initialization = initialization  # Method to initialize weights
+        self.initialization_args = initialization_args  # Arguments for initialization
         self.current_w_tensor = initialization(nn.structure,
-                                                  *initialization_args)
-        self.start_learning_rate = start_learning_rate
-        self.learning_rate = self.start_learning_rate
-        self.callbacks = callbacks
+                                                  *initialization_args)  # Initialize weights
+        self.start_learning_rate = start_learning_rate  # Initial learning rate
+        self.learning_rate = self.start_learning_rate  # Current learning rate
+        self.callbacks = callbacks  # List of callback functions
 
     def reset(self):
+        # Reset weights, loss values, and learning rate
         self.loss_values = []
         self.current_w_tensor = self.initialization(self.nn.structure,
                                                   *self.initialization_args)
@@ -34,10 +35,11 @@ class SGD_Optimizer:
             batch_end = batch_start + batch_size
             batch_x = dataset[0][batch_start:batch_end]
             batch_y = dataset[1][batch_start:batch_end]
-
-            # Compute gradients and update weights
-            gradients = np.mean([self.grad_loss(self.current_w_tensor, self.nn, x, y) for x, y in zip(batch_x, batch_y)], axis=0)
-            loss_values_batch = [self.loss(self.current_w_tensor, self.nn, x, y) for x, y in zip(batch_x, batch_y)]
+            
+            gradients = np.mean([self.grad_loss(self.current_w_tensor, self.nn, x, y)
+                                for x, y in zip(batch_x, batch_y)], axis=0)
+            loss_values_batch = [self.loss(self.current_w_tensor, self.nn, x, y)
+                                for x, y in zip(batch_x, batch_y)]
             self.current_w_tensor -= self.learning_rate * gradients
             self.loss_values.extend(loss_values_batch)
 
