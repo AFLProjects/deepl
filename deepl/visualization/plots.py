@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 def loss_plot(trainer, point_size, loss_str):
+    # Plot the loss values over iterations
     plt.figure(figsize=(10, 6))
     plt.scatter(range(len(trainer.loss_values)),
                 trainer.loss_values,
