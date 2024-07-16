@@ -4,26 +4,22 @@ from deepl import visualization
 import autograd.numpy as np
 
 # Example
+
+# Define structure
 structure = (3, 3, 3)
 nn = core.Dense_ANN(structure, [core.relu, core.fixed_point])
 
+# Training data
 data_size = 16000
 train_x = [np.random.rand(3) for _ in range(data_size)]
-train_y = 2 * train_x
+train_y = 100 * train_x
 
+# Validation data
 validate_size = 64
 validate_x = [np.random.rand(3) for _ in range(validate_size)]
-validate_y = 2 * validate_x
+validate_y = 100 * validate_x
 
-"""
-def lr_schedule(epoch):
-    epoch_mod = epoch % 1000
-    if 0 <= epoch_mod <= 500:
-        return 0.1
-    else:
-        return 0.01
-"""
-
+# Optimizer and parameters
 trainer = training.SGD_Optimizer(nn,
                                  loss=training.mse,
                                  init=core.uniform_init,
@@ -38,7 +34,9 @@ trainer = training.SGD_Optimizer(nn,
                                  reg=training.lasso,
                                  reg_params=(0.001,))
 
+# Train
 weights_tensor, loss_values = trainer.train(train_x, train_y, data_size)
 
+# Plots
 visualization.loss_plot(trainer, 0.5, 'MSE')
 visualization.mean_validation_plot(trainer, 0.5, 'MSE')

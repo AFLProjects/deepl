@@ -41,21 +41,22 @@ from deepl import visualization
 import autograd.numpy as np
 
 # Example
-# Structure
-structure = (2, 2, 2)
+
+# Define structure
+structure = (3, 3, 3)
 nn = core.Dense_ANN(structure, [core.relu, core.fixed_point])
 
 # Training data
 data_size = 16000
-train_x = [np.random.rand(2) for _ in range(data_size)]
-train_y = 2 * train_x
+train_x = [np.random.rand(3) for _ in range(data_size)]
+train_y = 100 * train_x
 
 # Validation data
 validate_size = 64
-validate_x = [np.random.rand(2) for _ in range(validate_size)]
-validate_y = 2 * validate_x
+validate_x = [np.random.rand(3) for _ in range(validate_size)]
+validate_y = 100 * validate_x
 
-# Optimiser
+# Optimizer and parameters
 trainer = training.SGD_Optimizer(nn,
                                  loss=training.mse,
                                  init=core.uniform_init,
@@ -63,15 +64,17 @@ trainer = training.SGD_Optimizer(nn,
                                  start_lr=0.1,
                                  callbacks=[training.stop_loss_min,
                                             training.checkpoints],
-                                 callback_args=[(10e-4,),
+                                 callback_args=[(10e-3,),
                                                 (250,)],
                                  validate_x=validate_x,
-                                 validate_y=validate_y)
+                                 validate_y=validate_y,
+                                 reg=training.lasso,
+                                 reg_params=(0.001,))
 
 # Train
 weights_tensor, loss_values = trainer.train(train_x, train_y, data_size)
 
-# Plot
+# Plots
 visualization.loss_plot(trainer, 0.5, 'MSE')
 visualization.mean_validation_plot(trainer, 0.5, 'MSE')
 ```
@@ -81,11 +84,11 @@ visualization.mean_validation_plot(trainer, 0.5, 'MSE')
     <img src="images/img2.png" alt="Image 2" style="width: 48%;">
 </div>
 
-Performance for this specific case( (2,2,2) ) : 
-__init__ took 7.958e-06 seconds
-uniform_init took 2.271e-05 seconds
-__init__ took 5.629e-05 seconds
-train took 1.820e-01 seconds
+Performance for this specific case( (3,3,3) ) : 
+__init__ took 8.833e-06 seconds
+uniform_init took 2.813e-05 seconds
+__init__ took 6.354e-05 seconds
+train took 9.781e-01 seconds
 
 
 
