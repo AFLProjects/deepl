@@ -5,9 +5,8 @@ A small deep learning library for training end-to-end Artificial Neural Networks
 ## Features
 
 ### Network Structure
-- Basic network structure with layers:
-  - `Dense_ANN`
-  - `Dense_Layer`
+- `Dense_ANN`
+- `Dense_Layer`
 
 ### Weights Initialization Models
 - `zero_init`
@@ -63,35 +62,39 @@ from deepl import training
 from deepl import visualization
 import autograd.numpy as np
 
-# Define network structure
+# Example
+# Structure
 structure = (2, 2, 2)
 nn = core.Dense_ANN(structure, [core.relu, core.fixed_point])
 
-# Generate training data
+# Training data
 data_size = 16000
 train_x = [np.random.rand(2) for _ in range(data_size)]
-train_y = 2 * np.array(train_x)
+train_y = 2 * train_x
 
-# Generate validation data
+# Validation data
 validate_size = 64
 validate_x = [np.random.rand(2) for _ in range(validate_size)]
-validate_y = 2 * np.array(validate_x)
+validate_y = 2 * validate_x
 
-# Initialize and train the network
+# Optimiser
 trainer = training.SGD_Optimizer(nn,
                                  loss=training.mse,
                                  init=core.uniform_init,
                                  init_args=(0, 1),
                                  start_lr=0.1,
-                                 callbacks=[training.stop_loss_min, training.checkpoints],
-                                 callback_args=[(10e-4,), (250,)],
+                                 callbacks=[training.stop_loss_min,
+                                            training.checkpoints],
+                                 callback_args=[(10e-4,),
+                                                (250,)],
                                  validate_x=validate_x,
                                  validate_y=validate_y)
 
+# Train
 weights_tensor, loss_values = trainer.train(train_x, train_y, data_size)
 
-# Visualize the performance
-visualization.loss_plot(trainer, 0.1, 'MSE')
-visualization.mean_validation_plot(trainer, 0.1, 'MSE')
+# Plot
+visualization.loss_plot(trainer, 0.5, 'MSE')
+visualization.mean_validation_plot(trainer, 0.5, 'MSE')
 
 
