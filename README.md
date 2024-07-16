@@ -5,43 +5,28 @@ A small deep learning library for training end-to-end Artificial Neural Networks
 ## Features
 
 ### Network Structure
-- `Dense_ANN`
-- `Dense_Layer`
+- `Dense_ANN`, `Dense_Layer`
 
-### Weights Initialization Models
-- `zero_init`
-- `uniform_init`
-- `xavier_init`
-- `he_init`
-- `variance_scaling_init`
-- `constant_init`
+### Weights and Bias Initialization Models
+- `zero_init`, `uniform_init`, `xavier_init`, `he_init`, `variance_scaling_init`, `constant_init`
 
 ### Activation Functions
-- `sigmoid`
-- `tanh`
-- `relu`
-- `leaky_relu`
-- `elu`
-- `swish`
-- `fixed_point`
+- `sigmoid`, `tanh`, `relu`, `leaky_relu`, `elu`, `swish`, `fixed_point`
 
 ### Output Evaluation and Loss Functions
-- `mse` (Mean Squared Error)
-- `mae` (Mean Absolute Error)
-- `binary_cross_entropy`
-- `hinge_loss`
+- `mse` (Mean Squared Error), `mae` (Mean Absolute Error), `binary_cross_entropy`, `hinge_loss`
 
 ### Optimizer
 - `SGD_Optimizer` (Stochastic Gradient Descent) capable of training fully connected ANNs.
 
+### Regulizers
+- `L1 (lasso)`, `L2 (ridge)`, `Elastic Net`
+
 ### Callbacks
-- `stop_loss_min`
-- `lr_scheduler`
-- `checkpoints`
+- `stop_loss_min`, `lr_scheduler`, `checkpoints`
 
 ### Performance Visualization
-- `loss_plot`
-- `mean_validation_plot`
+- `loss_plot`, `mean_validation_plot`
 
 ## Limitations
 - Uses mostly `numpy` with `autograd`, which does not take advantage of GPU and parallelism as modern libraries would.
