@@ -32,6 +32,12 @@ A small deep learning library for training end-to-end Artificial Neural Networks
 - Uses mostly `numpy` with `autograd`, which does not take advantage of GPU and parallelism as modern libraries would.
 - Only implements end-to-end training, not model-based deep learning.
 
+## How to use
+`git clone https://github.com/AFLProjects/deepl.git`
+`cd deepl`
+`python3 setup.py`
+`python3 example.py`
+
 ## Example
 
 ```python
